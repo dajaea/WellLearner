@@ -36,6 +36,38 @@ View(health_data)
 summary(health_data)
 ```
 ```{r}
+edu_attain <- read_csv("../data/Education.csv")
+```
+
+```{r}
+View(edu_attain)
+```
+
+```{r}
+health_means <- health_data %>%
+  group_by(State, Indicator) %>%
+  summarize(Val = mean(Value), Low_CI = mean("Low CI"), High_CI = mean("High CI"), CI = mean("Confidence Interval"), Quartile_Range = mean("Quartile Range"))
+```
+```{r}
+health_means <- health_data %>%
+  group_by(State, Indicator) %>%
+  summarize(val = mean(Value), Low_CI = mean("Low CI"), High_CI = mean("High CI"), CI = mean("Confidence Interval"), Quartile_Range = mean("Quartile Range"))
+```
+
+```{r}
+View(health_means)
+```
+
+```{r fig.height=5, fig.width=18}
+ggplot(health_means, aes(State, val)) +
+geom_point() +
+geom_point(aes(colour = factor(Indicator))) +
+aes(x = reorder (State, val), y = val) +
+theme(axis.text.x = element_text(angle = 70, vjust = 1, hjust = 1))
+```
+
+
+```{r fig.width=10}
 edu_data <- read_xls("../data/tabn223.23.xls")
 ```
 

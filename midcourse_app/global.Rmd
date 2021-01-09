@@ -17,11 +17,11 @@ library(readxl)
 library(dplyr)
 library(ggplot2)
 library(plotly)
-library(treemapify)
-library(extrafont)
-loadfonts(device="win")
+#library(treemapify)
+#library(extrafont)
+#loadfonts(device="win")
 
-require(scales)
+#require(scales)
 ```
 
 ```{r}
@@ -33,14 +33,11 @@ View(health_data)
 ```
 
 ```{r}
-summary(health_data)
-```
-```{r}
-edu_attain <- read_csv("../data/Education.csv")
+distinct(health_data, Subgroup, .keep_all = FALSE)
 ```
 
 ```{r}
-View(edu_attain)
+summary(health_data)
 ```
 
 ```{r}
@@ -48,10 +45,19 @@ health_means <- health_data %>%
   group_by(State, Indicator) %>%
   summarize(Val = mean(Value), Low_CI = mean("Low CI"), High_CI = mean("High CI"), CI = mean("Confidence Interval"), Quartile_Range = mean("Quartile Range"))
 ```
+
 ```{r}
 health_means <- health_data %>%
+  rename(
+    Low_CI = "Low CI",
+    High_CI ="High CI"
+    ) %>%
+  mutate( Low_CI= as.numeric(as.character(Low_CI))) %>%
+  mutate( High_CI= as.numeric(as.character(High_CI))) %>%
   group_by(State, Indicator) %>%
-  summarize(val = mean(Value), Low_CI = mean("Low CI"), High_CI = mean("High CI"), CI = mean("Confidence Interval"), Quartile_Range = mean("Quartile Range"))
+  summarize(Val = mean(Value,na.rm=TRUE),
+            Low_CI = mean(Low_CI,na.rm=TRUE),
+            High_CI = mean(High_CI,na.rm=TRUE))
 ```
 
 ```{r}
@@ -65,6 +71,38 @@ geom_point(aes(colour = factor(Indicator))) +
 aes(x = reorder (State, val), y = val) +
 theme(axis.text.x = element_text(angle = 70, vjust = 1, hjust = 1))
 ```
+```{r}
+edu_data <- read_csv("../data/Education.csv")
+```
+
+```{r}
+View(edu_data)
+```
+
+```{r}
+edu_rename <- edu_data %>%
+  rename(pre_diploma = "Percent of adults with less than a high school diploma, 2000", diploma_only = "Percent of adults with a high school diploma only, 2000", bachelors_higher = "Percent of adults with a bachelor's degree or higher, 2000")
+```
+
+```{r}
+edu_attain <- edu_rename %>%
+mutate(pre_diploma = as.numeric(as.character(pre_diploma))) %>%
+mutate(diploma_only = as.numeric(as.character(diploma_only))) %>%
+mutate(bachelors_higher = as.numeric(as.character(bachelors_higher))) %>%
+select(State, pre_diploma, diploma_only, bachelors_higher) %>%
+group_by(State) %>%
+summarize(pre_diploma = mean(pre_diploma, na.rm=TRUE), diploma_only = mean(diploma_only, na.rm=TRUE), bachelors_higher = mean(bachelors_higher, na.rm=TRUE))
+```
+
+```{r}
+View(edu_attain)
+```
+
+
+
+
+
+
 
 
 ```{r fig.width=10}

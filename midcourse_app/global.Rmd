@@ -41,6 +41,10 @@ summary(health_data)
 ```
 
 ```{r}
+health_edu <- read_csv("../data/health_edu.csv")
+```
+
+```{r}
 health_means <- health_data %>%
   group_by(State, Indicator) %>%
   summarize(Val = mean(Value), Low_CI = mean("Low CI"), High_CI = mean("High CI"), CI = mean("Confidence Interval"), Quartile_Range = mean("Quartile Range"))

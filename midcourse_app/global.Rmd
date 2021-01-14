@@ -45,6 +45,19 @@ health_edu <- read_csv("../data/health_edu.csv")
 ```
 
 ```{r}
+health_edu <- health_edu[-c('Low CI')]
+```
+```{r}
+health_edu <- health_edu %>%
+mutate(Value = as.numeric(as.character(Value))) %>%
+mutate('Time Period' = as.numeric(as.character('Time Period'))) %>%
+#mutate(bachelors_higher = as.numeric(as.character(bachelors_higher))) %>%
+#select(State, pre_diploma, diploma_only, bachelors_higher) %>%
+#group_by(State) %>%
+#summarize(pre_diploma = mean(pre_diploma, na.rm=TRUE), diploma_only = mean(diploma_only, na.rm=TRUE), bachelors_higher = mean(bachelors_higher, na.rm=TRUE))
+```
+
+```{r}
 health_means <- health_data %>%
   group_by(State, Indicator) %>%
   summarize(Val = mean(Value), Low_CI = mean("Low CI"), High_CI = mean("High CI"), CI = mean("Confidence Interval"), Quartile_Range = mean("Quartile Range"))

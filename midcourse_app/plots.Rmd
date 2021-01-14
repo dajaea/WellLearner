@@ -12,9 +12,44 @@ knitr::opts_chunk$set(echo = TRUE)
 (LATER) CORRECT FOR OCCURANCES OF ILLNESSESS AT CERTAIN AGES, THEN FACTOR IN BASED ON AGES OF ED ATTAINMENTS
 
 ```{r}
+# sample data
+d <- data.frame(expand.grid(x=letters[1:4], g=factor(1:2)), y=rnorm(8))
+ 
+# Figure 1a, 1b, and 1c.
+ggplot(d, aes(x=x, y=y, colour=g)) + opts(title="Figure 1a") + geom_line() + geom_point()
+ggplot(d, aes(x=x, y=y, colour=g, group=g)) + opts(title="Figure 1b") + geom_line() + geom_point()
+ggplot(d, aes(x=x, y=y, colour=g, group=1)) + opts(title="Figure 1c") + geom_line() + geom_point()
+```
+
+```{r}
+example <- data.frame(country=c("Argentina","Uruguay","Brazil","Argentina","Uruguay","Brazil","Argentina","Uruguay","Brazil"),
+                   year=c(2018,2018,2018,2019,2019,2019,2020,2020,2020),
+                   value=c(10,12,13,12,14,17,13,13,20))
+```
+
+```{r}
+ggplot(example,aes(year,value,group=country)) + geom_line()
+```
+
+```{r}
+#same with color
+ggplot(example,aes(x=year,y=value, color = country)) + geom_line()
+```
+```{r}
+rename(health_edu, Val = Value)
+```
+
+
+```{r}
+ggplot(subset(health_edu, Indicator == 'Symptoms of Depressive Disorder', Subgroup == 'less than a high school diploma')) +
+  aes(x='Time Period',y='Val',group = Indicator) + geom_line()
+```
+
+
+```{r}
 ggplot(subset(health_edu, Indicator == 'Symptoms of Depressive Disorder', Subgroup == 'less than a high school diploma')) +
   #summarise(health_edu$ind_mean = mean('Indicator')) %>%
-  aes(x = health_edu$'Time Period', y = health_edu$'Value', group = 'Indicator') +
+  aes(x = health_edu$'Time Period', y = health_edu$'Val', group = 'Indicator') +
   geom_line(group = 'Indicator', group = 'Subgroup') +
   ggtitle('TEST') +
   xlab('x test') +
@@ -22,6 +57,10 @@ ggplot(subset(health_edu, Indicator == 'Symptoms of Depressive Disorder', Subgro
   #scale_y_continuous(labels = scales::comma) +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
   theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r}
+select(health_edu, -c(9, 10, 11))
 ```
 
 

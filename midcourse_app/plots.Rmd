@@ -49,7 +49,7 @@ ggplot(subset(health_edu, Indicator == 'Symptoms of Depressive Disorder', Subgro
 ```{r}
 ggplot(subset(health_edu, Indicator == 'Symptoms of Depressive Disorder', Subgroup == 'less than a high school diploma')) +
   #summarise(health_edu$ind_mean = mean('Indicator')) %>%
-  aes(x = health_edu$'Time Period', y = health_edu$'Val', group = 'Indicator') +
+  aes(x = 'Time Period', y = 'Val') +
   geom_line(group = 'Indicator', group = 'Subgroup') +
   ggtitle('TEST') +
   xlab('x test') +
@@ -58,6 +58,25 @@ ggplot(subset(health_edu, Indicator == 'Symptoms of Depressive Disorder', Subgro
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
   theme(plot.title = element_text(hjust = 0.5))
 ```
+
+```{r}
+health_edu %>%
+  filter(Indicator == 'Symptoms of Depressive Disorder') %>%
+  #summarise(health_edu$ind_mean = mean('Indicator')) %>%
+  ggplot(aes(x = `Time Period`, y = Value)) +
+  geom_line(aes(group = Subgroup, color = Subgroup)) +
+  ggtitle('TEST') +
+  xlab('x test') +
+  ylab('y test') +
+  geom_ribbon(aes(ymin=`Low CI`, ymax = `High CI`, group = Subgroup, fill = Subgroup, alpha = 0.1)) +
+  #scale_y_continuous(labels = scales::comma) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+```{r}
+colnames(health_edu)
+```
+
 
 ```{r}
 select(health_edu, -c(9, 10, 11))

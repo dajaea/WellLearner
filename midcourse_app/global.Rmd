@@ -39,19 +39,21 @@ distinct(health_data, Subgroup, .keep_all = FALSE)
 ```{r}
 summary(health_data)
 ```
-
+ 
 ```{r}
 health_edu <- read_csv("../data/health_edu.csv")
 ```
 
 ```{r}
-health_edu <- health_edu[-c('Low CI')]
+#health_edu <- health_edu[-c('Low CI')]
 ```
+
 ```{r}
 health_edu <- health_edu %>%
+drop_na() %>%
+filter(Group = `By Education`) %>%
 mutate(Value = as.numeric(as.character(Value))) %>%
-mutate('Time Period' = as.numeric(as.character('Time Period'))) %>%
-#mutate(bachelors_higher = as.numeric(as.character(bachelors_higher))) %>%
+mutate(`Time Period` = as.numeric(as.character(`Time Period`))) %>%
 #select(State, pre_diploma, diploma_only, bachelors_higher) %>%
 #group_by(State) %>%
 #summarize(pre_diploma = mean(pre_diploma, na.rm=TRUE), diploma_only = mean(diploma_only, na.rm=TRUE), bachelors_higher = mean(bachelors_higher, na.rm=TRUE))

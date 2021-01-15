@@ -1,0 +1,55 @@
+---
+title: "WLserver"
+author: "Daniel Eaton"
+date: "1/14/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Define server logic required to draw a histogram
+shinyServer(function(input, output) {
+    # Create a reactive element that munges the provided data
+    health_edu <- reactive({
+        # Require an input so that it doesn't show an error
+        req(input$file)
+        # Read in each sheet as a dataframe
+        for (i in 1:3){
+            health_edu <- input$file$datapath
+            
+            tablename <- (data(path = health_edu)[i])
+            
+            assign(paste(tablename), read_csv(health_edu, sheet = tablename))
+        }
+        
+        #Create health_edu
+        health_edu <- read_csv("../data/health_edu.csv")
+      
+        health_edu <- health_edu %>%
+          drop_na() %>%
+          filter(Group = `By Education`) %>%
+          mutate(Value = as.numeric(as.character(Value))) %>%
+          mutate(`Time Period` = as.numeric(as.character(`Time Period`))) %>%
+        
+        
+    })
+    
+    output$lineplot <- renderPlot({
+        health_edu %>%
+          filter(Indicator == 'Symptoms of Depressive Disorder') %>%
+          #summarise(health_edu$ind_mean = mean('Indicator')) %>%
+          ggplot(aes(x = `Time Period`, y = Value)) +
+          geom_line(aes(group = Subgroup, color = Subgroup)) +
+          ggtitle('TEST') +
+          xlab('x test') +
+          ylab('y test') +
+          geom_ribbon(aes(ymin=`Low CI`, ymax = `High CI`, group = Subgroup, fill = Subgroup, alpha = 0.1)) +
+          #scale_y_continuous(labels = scales::comma) +
+          theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
+          theme(plot.title = element_text(hjust = 0.5))
+    })
+})
+```

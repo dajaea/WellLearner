@@ -1,0 +1,70 @@
+---
+title: "WLui"
+author: "Daniel Eaton"
+date: "1/14/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Define UI for application that draws a lineplot
+
+```{r}
+shinyUI(dashboardPage(
+    skin = "white",
+    
+    # Application title
+    dashboardHeader(title = "WellLearner Explorer"),
+```
+
+    # Sidebar
+    dashboardSidebar(
+        
+        # Create a selector input for the statistic
+        selectInput(
+            "stat",
+            h4("Choose your desired statistic:"),
+            choices = ,
+            selected = ...[]
+        ),
+        
+         Create a selector for raw #s or %s
+        selectInput(
+            'num_or_pct',
+            h4('Compare by raw #s or %s:'),
+            choices = c("" = "yValue",
+                        "" = ""),
+            selected = "Raw Numbers"
+        ),
+        
+        # To update the data in the future:
+        #fileInput(
+            #'file',
+            #h4('Upload your csv file:'),
+            #accept = '.csv'
+        )
+    ),
+  
+```{r}
+# Body
+dashboardBody(
+    tags$head(
+        tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
+    ),
+    tabsetPanel(
+        tabPanel("Line Graph",
+            # Create boxes to style each plot
+            fluidRow(
+                # Left plot with the line graph for the dataset
+                column(width = 6,
+                       box(width = NULL,
+                           plotOutput("linegraph")
+                        )
+                )
+            )
+        )
+    )
+)
+```

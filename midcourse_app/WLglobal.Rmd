@@ -1,0 +1,40 @@
+---
+title: "WLglobal"
+author: "Daniel Eaton"
+date: "1/14/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(shiny)
+library(tidyverse)
+library(shinydashboard)
+library(readxl)
+library(dplyr)
+library(ggplot2)
+library(plotly)
+#library(treemapify)
+#library(extrafont)
+#loadfonts(device="win")
+
+#require(scales)
+```
+
+```{r}
+health_data <- read_csv("../data/Indicators_of_Anxiety_or_Depression_Based_on_Reported_Frequency_of_Symptoms_During_Last_7_Days.csv")
+```
+
+```{r}
+health_edu <- health_data %>%
+drop_na() %>%
+filter(Group == "By Education") %>%
+mutate(Value = as.numeric(as.character(Value))) %>%
+mutate(`Time Period` = as.numeric(as.character(`Time Period`)))
+#select(State, pre_diploma, diploma_only, bachelors_higher) %>%
+#group_by(State) %>%
+#summarize(pre_diploma = mean(pre_diploma, na.rm=TRUE), diploma_only = mean(diploma_only, na.rm=TRUE), bachelors_higher = mean(bachelors_higher, na.rm=TRUE))
+```

@@ -1,0 +1,39 @@
+---
+title: "WLplots"
+author: "Daniel Eaton"
+date: "1/12/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+(LATER) CORRECT FOR OCCURANCES OF ILLNESSESS AT CERTAIN AGES, THEN FACTOR IN BASED ON AGES OF ED ATTAINMENTS
+
+#```{r}
+rename(health_edu, Val = Value)
+#```
+
+```{r}
+health_edu %>%
+  filter(Indicator == 'Symptoms of Depressive Disorder') %>%
+  #summarise(health_edu$ind_mean = mean('Indicator')) %>%
+  ggplot(aes(x = `Time Period`, y = Value)) +
+  geom_line(aes(group = Subgroup, color = Subgroup)) +
+  ggtitle('TEST') +
+  xlab('x test') +
+  ylab('y test') +
+  geom_ribbon(aes(ymin=`Low CI`, ymax = `High CI`, group = Subgroup, fill = Subgroup, alpha = 0.1)) +
+  #scale_y_continuous(labels = scales::comma) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+```{r}
+colnames(health_edu)
+```
+
+
+#```{r}
+select(health_edu, -c(9, 10, 11))
+#```

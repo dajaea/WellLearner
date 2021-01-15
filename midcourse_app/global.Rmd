@@ -51,9 +51,9 @@ health_edu <- read_csv("../data/health_edu.csv")
 ```{r}
 health_edu <- health_edu %>%
 drop_na() %>%
-filter(Group = `By Education`) %>%
+filter(Group == "By Education") %>%
 mutate(Value = as.numeric(as.character(Value))) %>%
-mutate(`Time Period` = as.numeric(as.character(`Time Period`))) %>%
+mutate(`Time Period` = as.numeric(as.character(`Time Period`)))
 #select(State, pre_diploma, diploma_only, bachelors_higher) %>%
 #group_by(State) %>%
 #summarize(pre_diploma = mean(pre_diploma, na.rm=TRUE), diploma_only = mean(diploma_only, na.rm=TRUE), bachelors_higher = mean(bachelors_higher, na.rm=TRUE))
@@ -83,27 +83,27 @@ health_means <- health_data %>%
 View(health_means)
 ```
 
-```{r fig.height=5, fig.width=18}
-ggplot(health_means, aes(State, val)) +
+#```{r fig.height=5, fig.width=18}
+ggplot(health_means, aes(State, Value)) +
 geom_point() +
 geom_point(aes(colour = factor(Indicator))) +
-aes(x = reorder (State, val), y = val) +
+aes(x = reorder (State, Value), y = Value) +
 theme(axis.text.x = element_text(angle = 70, vjust = 1, hjust = 1))
-```
-```{r}
+#```
+#```{r}
 edu_data <- read_csv("../data/Education.csv")
-```
+#```
 
-```{r}
+#```{r}
 View(edu_data)
-```
+#```
 
-```{r}
+#```{r}
 edu_rename <- edu_data %>%
   rename(pre_diploma = "Percent of adults with less than a high school diploma, 2000", diploma_only = "Percent of adults with a high school diploma only, 2000", bachelors_higher = "Percent of adults with a bachelor's degree or higher, 2000")
-```
+#```
 
-```{r}
+#```{r}
 edu_attain <- edu_rename %>%
 mutate(pre_diploma = as.numeric(as.character(pre_diploma))) %>%
 mutate(diploma_only = as.numeric(as.character(diploma_only))) %>%
@@ -111,11 +111,11 @@ mutate(bachelors_higher = as.numeric(as.character(bachelors_higher))) %>%
 select(State, pre_diploma, diploma_only, bachelors_higher) %>%
 group_by(State) %>%
 summarize(pre_diploma = mean(pre_diploma, na.rm=TRUE), diploma_only = mean(diploma_only, na.rm=TRUE), bachelors_higher = mean(bachelors_higher, na.rm=TRUE))
-```
+#```
 
-```{r}
+#```{r}
 View(edu_attain)
-```
+#```
 
 
 
@@ -124,34 +124,14 @@ View(edu_attain)
 
 
 
-```{r fig.width=10}
+#```{r fig.width=10}
 edu_data <- read_xls("../data/tabn223.23.xls")
-```
+#```
 
-```{r}
+#```{r}
 View(edu_data)
-```
+#```
 
-```{r}
+#```{r}
 summary(edu_data)
-```
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+#```

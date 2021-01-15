@@ -10,6 +10,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
+
+```
+
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
     # Create a reactive element that munges the provided data
@@ -51,5 +54,5 @@ shinyServer(function(input, output) {
           theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
           theme(plot.title = element_text(hjust = 0.5))
     })
-})
-```
+#})    
+

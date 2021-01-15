@@ -38,3 +38,11 @@ mutate(`Time Period` = as.numeric(as.character(`Time Period`)))
 #group_by(State) %>%
 #summarize(pre_diploma = mean(pre_diploma, na.rm=TRUE), diploma_only = mean(diploma_only, na.rm=TRUE), bachelors_higher = mean(bachelors_higher, na.rm=TRUE))
 ```
+
+```{r}
+penguins <- read_csv('..data/health_edu.csv') 
+penguins <- health %>% 
+  drop_na(body_mass_g)
+
+island_choices <- sort(unique(penguins$island))
+```

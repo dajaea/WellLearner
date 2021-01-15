@@ -47,7 +47,7 @@ shinyUI(dashboardPage(
         )
     ),
   
-```{r}
+
 # Body
 dashboardBody(
     tags$head(
@@ -67,4 +67,3 @@ dashboardBody(
         )
     )
 )
-```

@@ -1,0 +1,13 @@
+name: penguin_demo
+title: penguin_demo
+username:
+account: hotelsearchnow-tingting
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3418532
+bundleId: 4009502
+url: https://hotelsearchnow-tingting.shinyapps.io/penguin_demo/
+when: 1608397699.5266
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .RData|Shiny_walkthrough_goals.txt

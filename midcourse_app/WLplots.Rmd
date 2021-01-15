@@ -29,6 +29,7 @@ health_edu %>%
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
   theme(plot.title = element_text(hjust = 0.5))
 ```
+
 ```{r}
 colnames(health_edu)
 ```

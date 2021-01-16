@@ -9,9 +9,11 @@ health_edu <- health_data %>%
   select(-c(`Quartile range`)) %>%
   filter(Group == "By Education") %>%
   drop_na()
-  #mutate(Value = as.numeric(as.character(Value))) %>%
-  #mutate(`Time Period` = as.numeric(as.character(`Time Period`)))
-
+  
+health_age <- health_data %>%
+  select(-c(`Quartile range`)) %>%
+  filter(Group == "By Age") %>%
+  drop_na()
 
 #****************
 

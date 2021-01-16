@@ -1,28 +1,44 @@
 shinyUI(
   
-  dashboardPage(
-    
-    # Application title
-    dashboardHeader(title ="WellLearner Explorer"),
-    
-    # Sidebar with a slider input for number of bins 
-    
-    dashboardSidebar(
-      selectInput("Illness",
-                  "Choose an Illness:",
-                  choices = health_edu$Indicator,
-                  selected = health_edu$Indicator[1])
-      
-    ),
-    
-  
-    # Show a plot of the generated distribution
-    dashboardBody(
-      plotOutput("linegraph")
-               
-        )
+  navbarPage("WellLearner Explorer",
 
-      ))
+             # Output plots  ...#do a sidebar layout for each
+             tabPanel("Ed. Attainment",
+                      sidebarLayout(
+                        sidebarPanel(
+                          selectInput("Illness","Choose an Illness:",
+                                      choices = health_edu$Indicator,
+                                      selected = health_edu$Indicator[1])),
+                        mainPanel(plotOutput("ed_graph"))
+                      )),
+             
+             tabPanel("By Age",
+                      sidebarLayout(
+                        sidebarPanel(
+                          selectInput("Illness","Choose an Illness:",
+                                      choices = health_edu$Indicator,
+                                      selected = health_edu$Indicator[1])),
+                        mainPanel(plotOutput("age_graph"))
+                      )),     
+             
+             tabPanel("Education + Age",
+                      sidebarLayout(
+                        sidebarPanel(
+                          selectInput("Illness","Choose an Illness:",
+                                      choices = health_edu$Indicator,
+                                      selected = health_edu$Indicator[1])),
+                        mainPanel(plotOutput("ed_age_graph"))
+                      ))
+             
+             
+             #mainPanel(
+             #  tabsetPanel(
+             #    tabPanel("Plot", plotOutput("plot")), 
+             #    tabPanel("Summary", verbatimTextOutput("summary")), 
+             #    tabPanel("Table", tableOutput("table"))   
+  )
+)
+
 
 # library(shiny)
 # 

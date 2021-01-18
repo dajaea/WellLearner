@@ -1,3 +1,4 @@
+
 shinyUI(
   
   navbarPage("WellLearner Explorer",
@@ -10,14 +11,14 @@ shinyUI(
                                       choices = health_edu$Indicator,
                                       selected = health_edu$Indicator[1])),
                         mainPanel(plotOutput("ed_graph"))
-                      )),
+                     )),
              
              tabPanel("By Age",
                       sidebarLayout(
                         sidebarPanel(
                           selectInput("Illness","Choose an Illness:",
-                                      choices = health_edu$Indicator,
-                                      selected = health_edu$Indicator[1])),
+                                      choices = health_age$Indicator,
+                                      selected = health_age$Indicator[1])),
                         mainPanel(plotOutput("age_graph"))
                       )),     
              
@@ -25,8 +26,8 @@ shinyUI(
                       sidebarLayout(
                         sidebarPanel(
                           selectInput("Illness","Choose an Illness:",
-                                      choices = health_edu$Indicator,
-                                      selected = health_edu$Indicator[1])),
+                                      choices = diploma_bachelors_29$Indicator,
+                                      selected = diploma_bachelors_29$Indicator[1])),
                         mainPanel(plotOutput("ed_age_graph"))
                       ))
              

@@ -11,16 +11,19 @@ health_data <- read_csv("data/Indicators_of_Anxiety_or_Depression_Based_on_Repor
 health_edu <- health_data %>%
   select(-c(`Quartile range`)) %>%
   filter(Group == "By Education") %>%
+  rename(Indicator_1 = Indicator) %>%
   drop_na()
 
 health_age <- health_data %>%
   select(-c(`Quartile range`)) %>%
   filter(Group == "By Age") %>%
+  rename(Indicator_2 = Indicator) %>%
   drop_na()
 
 diploma_bachelors_29 <- health_data %>%
   select(-c(`Quartile range`)) %>%
   filter(Subgroup %in% c("18 - 29 years", "High school diploma or GED", "Bachelor's degree or higher")) %>%
+  rename(Indicator_3 = Indicator) %>%
   drop_na()
 
 

@@ -7,7 +7,7 @@ shinyUI(
              tabPanel("Ed. Attainment",
                       sidebarLayout(
                         sidebarPanel(
-                          selectInput("Illness","Choose an Illness:",
+                          selectInput("Illness_1","Choose an Illness:",
                                       choices = health_edu$Indicator_1,
                                       selected = health_edu$Indicator_1)),
                         mainPanel(plotOutput("ed_graph"))
@@ -28,7 +28,7 @@ shinyUI(
              tabPanel("By Age",
                       sidebarLayout(
                         sidebarPanel(
-                          selectInput("Illness","Choose an Illness:",
+                          selectInput("Illness_2","Choose an Illness:",
                                       choices = health_age$Indicator_2,
                                       selected = health_age$Indicator_2)),
                         mainPanel(plotOutput("age_graph"))
@@ -43,7 +43,7 @@ shinyUI(
              tabPanel("Education + Age",
                       sidebarLayout(
                         sidebarPanel(
-                          selectInput("Illness","Choose an Illness:",
+                          selectInput("Illness_3","Choose an Illness:",
                                       choices = diploma_bachelors_29$Indicator_3,
                                       selected = diploma_bachelors_29$Indicator_3)),
                         mainPanel(plotOutput("ed_age_graph"))

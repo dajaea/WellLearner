@@ -16,7 +16,7 @@ shinyServer(function(input, output) {
   
   output$ed_graph <- renderPlot({
     health_edu %>%
-      filter(Indicator_1 == input$Illness) %>%
+      filter(Indicator_1 == input$Illness_1) %>%
       ggplot(aes(x = reorder(`Time Period Label`, `Time Period`), y = Value)) +
       geom_line(aes(group = Subgroup, color = Subgroup)) +
       # add error bands
@@ -41,7 +41,7 @@ shinyServer(function(input, output) {
   
   output$age_graph <- renderPlot({
     health_age %>%
-      filter(Indicator_2 == input$Illness) %>%
+      filter(Indicator_2 == input$Illness_2) %>%
       ggplot(aes(x = reorder(`Time Period Label`, `Time Period`), y = Value)) +
       geom_line(aes(group = Subgroup, color = Subgroup)) +
       geom_ribbon(aes(ymin=`Low CI`, ymax = `High CI`, group = Subgroup, fill = Subgroup),alpha = .5) +
@@ -64,7 +64,7 @@ shinyServer(function(input, output) {
   
   output$ed_age_graph <- renderPlot({
     diploma_bachelors_29 %>%
-      filter(Indicator_3 == input$Illness) %>%
+      filter(Indicator_3 == input$Illness_3) %>%
       ggplot(aes(x = reorder(`Time Period Label`, `Time Period`), y = Value)) +
       geom_line(aes(group = Subgroup, color = Subgroup)) +
       geom_ribbon(aes(ymin=`Low CI`, ymax = `High CI`, group = Subgroup, fill = Subgroup),alpha = .5) +

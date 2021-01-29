@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 9c460aebd49a42c39c3f83365d520b368d13f68f
-
 
 WellLearner Explorer
 

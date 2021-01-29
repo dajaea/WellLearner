@@ -1,0 +1,13 @@
+name: welllearner_explorer
+title: welllearner_explorer
+username:
+account: danieleaton
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3543911
+bundleId: 4155823
+url: https://danieleaton.shinyapps.io/welllearner_explorer/
+when: 1611883343.64613
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .RData|WLglobal.Rmd|WLplots.Rmd|WLserver.Rmd|WLui.Rmd

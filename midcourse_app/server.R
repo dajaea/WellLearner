@@ -36,7 +36,7 @@ shinyServer(function(input, output) {
       # re-order legend
       scale_fill_discrete(breaks = c("Bachelor's degree or higher", "Some college/Associate's degree", "High school diploma or GED", "Less than a high school diploma")) + 
       scale_color_discrete(breaks = c("Bachelor's degree or higher", "Some college/Associate's degree", "High school diploma or GED", "Less than a high school diploma")) +
-      geom_hline(yintercept = 20) +
+      #geom_hline(yintercept = 20) +
       #scale_fill_manual(values="black", label="Anxiety baseline 2019")
       annotate("text", x = Inf, y = 2.9, label = "text2", hjust = -0.08, size = 3)
       

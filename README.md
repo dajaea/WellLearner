@@ -1,11 +1,11 @@
 
-WellLearner Explorer
+WellLearner Explorer  
 https://danieleaton.shinyapps.io/welllearner_explorer/
 
 Mental Health  |  Educational Attainment  |  Public Health Crisis
 
-Designed and created by Daniel Eaton
-https://github.com/dajaea
+Designed and created by Daniel Eaton  
+https://github.com/dajaea  
 dajaea13@gmail.com
 
 
